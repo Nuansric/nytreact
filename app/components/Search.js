@@ -11,7 +11,7 @@ var Search = React.createClass({
   // Here we set a generic state associated with the number of clicks
   // Note how we added in this history state variable
   getInitialState: function() {
-    return { topic: "Search Topic", startYear: 0, endYear: 0, result:[]};
+    return { topic: "Search Topic", startYear: 2010, endYear: 2017, result:[]};
       //, headline = "", pubDate="", url="" 
   },
  // This function will respond to the user input
@@ -149,10 +149,10 @@ handleSave: function(search) {
                               <div  className="panel-body text-center">  
                                 <h2>{search.headline.main}</h2>
                                 <p>Publication Date: {search.pub_date}</p>
-                                <p>Web URL:</p>
-                                <a href="{search.web_url}">{search.web_url}</a>
+                                <p>Web URL:
+                                <a href="{search.web_url}"> {search.web_url}</a>
                                 
-                           
+                           </p>
                             <button className="btn btn-primary" type="submit" onClick={that.handleSave.bind(that, search)}>SAVE</button>
 
 

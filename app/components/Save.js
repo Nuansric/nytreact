@@ -71,9 +71,9 @@ getArticles: function() {
                               <div  className="panel-body text-center">  
                                 <h2>{search.topic}</h2>
                                 <p>Publication Date: {search.pubDate}</p>
-                                <p>Web URL:</p>
-                                <a href="{search.web_url}">{search.url}</a>
-                                
+                                <p>Web URL:
+                                <a href="{search.web_url}"> {search.url}</a>
+                                </p>
                            
                             <button className="btn btn-primary" type="submit" onClick={that.handleDelete.bind(that, search)}>DELETE</button>
 
