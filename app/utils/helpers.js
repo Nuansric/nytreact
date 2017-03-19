@@ -20,23 +20,23 @@ var helpers = {
         });
     },
     // This function posts new searches to our database.
-  postSave: function(topic, pubDate, url) {
-    return axios.post("/api/saved", { 
-        topic: topic,
-        pubDate: pubDate,
-        url: url
-     });
-  },
-getSave: function() {
-    return axios.get("/api/saved");
-  },
-deleteSave: function(topic) {
-    console.log(topic);
-    return axios.post("/api/saved/delete", { 
-        topic: topic
-       
-     });
-  }
+    postSave: function(topic, pubDate, url) {
+        return axios.post("/api/saved", {
+            topic: topic,
+            pubDate: pubDate,
+            url: url
+        });
+    },
+    getSave: function() {
+        return axios.get("/api/saved");
+    },
+    deleteSave: function(topic) {
+        console.log(topic);
+        return axios.post("/api/saved/delete", {
+            topic: topic
+
+        });
+    }
 };
 
 // We export the helpers object (which contains runQuery)
