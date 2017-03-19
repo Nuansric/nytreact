@@ -82,15 +82,13 @@ handleSave: function(search) {
           <div className="col-md-12">
              <div className="panel panel-default">
                 <div className="panel-heading">
-                     <h3 className="panel-title text-center">Query</h3>
+                     <h3 className="panel-title text-center">Article Search</h3>
                 </div>
        
                  <div className="panel-body text-center">
                      <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                             <h4 className="">
-                                <strong>Location</strong>
-                             </h4>
+                         
                                 <label>Topic:</label>
                                 <input
                                     value={this.state.topic}
