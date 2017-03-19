@@ -24,15 +24,15 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/NYtimes");
+mongoose.connect("mongodb://heroku_h1sl7wrn:mer21mq1sft712j0b69549t870@ds135680.mlab.com:35680/heroku_h1sl7wrn" || "mongodb://localhost/NYtimes");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
+    console.log("Mongoose Error: ", err);
 });
 
 db.once("open", function() {
-  console.log("Mongoose connection successful.");
+    console.log("Mongoose connection successful.");
 });
 
 // -------------------------------------------------
@@ -43,56 +43,54 @@ db.once("open", function() {
 // We will call this route the moment our page gets rendered
 app.get("/api/saved", function(req, res) {
 
-  // We will find all the records, sort it in descending order, then limit the records to 5
-  Saved.find({}).exec(function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send(doc);
-    }
-  });
+    // We will find all the records, sort it in descending order, then limit the records to 5
+    Saved.find({}).exec(function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(doc);
+        }
+    });
 });
 
 // This is the route we will send POST requests to save each search.
 app.post("/api/saved", function(req, res) {
     Saved.findOneAndUpdate({
-    topic: req.body.topic
-  }, {
-    $set: {
-      pubDate: req.body.pubDate,
-      url: req.body.url
-    }
-  }, { upsert: true }).exec(function(err) {
+        topic: req.body.topic
+    }, {
+        $set: {
+            pubDate: req.body.pubDate,
+            url: req.body.url
+        }
+    }, { upsert: true }).exec(function(err) {
 
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send("Updated SAVED Count!");
-    }
-  });
+        if (err) {
+            console.log(err);
+        } else {
+            res.send("Updated SAVED Count!");
+        }
+    });
 });
 
 app.post("/api/saved/delete", function(req, res) {
     console.log("inside delete routes")
     console.log(req.body);
     Saved.remove({ topic: req.body.topic }, function(err) {
-            if (!err) {
-               res.send("DELETE SAVED Count!");
-            } else {
-                console.log(err);
-            }
-        });
+        if (!err) {
+            res.send("DELETE SAVED Count!");
+        } else {
+            console.log(err);
+        }
+    });
 
 });
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "/public/index.html");
 });
 
 // -------------------------------------------------
 
 // Listener
 app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+    console.log("App listening on PORT: " + PORT);
 });
